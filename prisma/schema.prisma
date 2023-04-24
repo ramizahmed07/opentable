@@ -69,6 +69,7 @@ model User {
   first_name String
   last_name  String
   city       String
+  password   String
   email      String   @unique
   phone      String
   reviews    Review[]
@@ -78,6 +79,8 @@ model User {
 
 model Review {
   id            Int        @id @default(autoincrement())
+  first_name    String
+  last_name     String
   text          String
   rating        Float
   user          User       @relation(fields: [user_id], references: [id])
