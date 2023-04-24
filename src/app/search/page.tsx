@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { Price } from "@prisma/client";
 
 import { SearchParams } from "./types";
 import prisma from "@/app/client";
@@ -21,6 +20,7 @@ const fetchRestaurantsByParams = (searchParams: SearchParams) => {
     cuisine: true,
     location: true,
     slug: true,
+    reviews: true,
   };
 
   if (!Object.keys(searchParams).length)
