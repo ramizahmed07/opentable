@@ -7,6 +7,7 @@ export default function Images({ images }: { images: string[] }) {
       <div className="flex flex-wrap">
         {images.map((src, idx) => (
           <img
+            key={idx}
             id={idx.toString()}
             className="w-56 h-44 mr-1 mb-1"
             src={src}
