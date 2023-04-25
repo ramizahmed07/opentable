@@ -1,6 +1,6 @@
-import prisma from "./client";
-import Header from "./components/Header";
-import RestaurantCard from "./components/RestaurantCard";
+import Header from "@/components/Header";
+import RestaurantCard from "@/components/RestaurantCard";
+import prisma from "@/lib/prisma";
 
 const fetchRestaurants = () => {
   return prisma.restaurant.findMany({

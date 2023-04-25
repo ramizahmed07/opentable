@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { Cuisine, Location, Price as PRICE, Review } from "@prisma/client";
 
-import Price from "./Price";
-import Stars from "./Stars";
+import Stars from "@/components/Stars";
+import Price from "@/components/Price";
 
 interface RestaurantCardType {
   id: number;

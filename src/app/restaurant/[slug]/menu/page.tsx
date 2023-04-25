@@ -1,4 +1,4 @@
-import prisma from "@/app/client";
+import prisma from "@/lib/prisma";
 import Header from "../components/Header";
 import Menu from "../components/Menu";
 import RestaurantNavBar from "../components/RestaurantNavBar";

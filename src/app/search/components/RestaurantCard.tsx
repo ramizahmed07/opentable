@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { Cuisine, Location, Price as PRICE, Review } from "@prisma/client";
 
-import Price from "@/app/components/Price";
-import { calculateReviewRating } from "@/app/utils/caculateReviewRating";
-import Stars from "@/app/components/Stars";
+import { calculateReviewRatingAverage } from "@/utils/caculateReviewRating";
+import Stars from "@/components/Stars";
+import Price from "@/components/Price";
 
 interface Restaurant {
   id: number;
@@ -17,7 +17,7 @@ interface Restaurant {
 }
 
 const renderRatingText = (reviews: Review[]) => {
-  const rating = calculateReviewRating(reviews);
+  const rating = calculateReviewRatingAverage(reviews);
   if (rating > 4) return "Awesome";
   else if (rating > 3 && rating <= 4) return "Good";
   else if (rating > 0 && rating <= 3) return "Average";

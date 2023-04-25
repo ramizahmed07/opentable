@@ -1,5 +1,6 @@
-import Stars from "@/app/components/Stars";
 import { Review } from "@prisma/client";
+
+import Stars from "@/components/Stars";
 
 export default function Reviews({ reviews }: { reviews: Review[] }) {
   return (

@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Review } from "@prisma/client";
 
-import { calculateReviewRating } from "../utils/caculateReviewRating";
+import { calculateReviewRatingAverage } from "@/utils/caculateReviewRating";
 import fullStar from "public/icons/full-star.png";
 import halfStar from "public/icons/half-star.png";
 import emptyStar from "public/icons/empty-star.png";
@@ -14,7 +14,7 @@ export default function Stars({
   reviews: Review[];
   rating?: number;
 }) {
-  const calculatedRating = rating || calculateReviewRating(reviews);
+  const calculatedRating = rating || calculateReviewRatingAverage(reviews);
 
   const renderStar = () => {
     const stars = [];
@@ -24,8 +24,8 @@ export default function Stars({
       if (diff > 0.2 && diff <= 0.6) stars.push(halfStar);
       if (diff <= 0.2) stars.push(emptyStar);
     }
-    return stars.map((star) => (
-      <Image className="w-4 h-4 mr-1" src={star} alt="star icon" />
+    return stars.map((star, i) => (
+      <Image key={i} className="w-4 h-4 mr-1" src={star} alt="star icon" />
     ));
   };
 

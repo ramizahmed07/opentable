@@ -1,6 +1,6 @@
 import { Review } from "@prisma/client";
 
-import prisma from "@/app/client";
+import prisma from "@/lib/prisma";
 import Description from "./components/Description";
 import Images from "./components/Images";
 import Rating from "./components/Rating";

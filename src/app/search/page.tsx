@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 import { SearchParams } from "./types";
-import prisma from "@/app/client";
+import prisma from "@/lib/prisma";
 import Header from "./components/Header";
 import RestaurantCard from "./components/RestaurantCard";
 import SearchSideBar from "./components/SearchSideBar";
