@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Cuisine, Location, Price as PRICE, Review } from "@prisma/client";
 
 import Price from "./Price";
+import Stars from "./Stars";
 
 interface RestaurantCardType {
   id: number;
@@ -26,8 +27,8 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
         <img src={main_image} alt="" className="w-full h-36" />
         <div className="p-1">
           <h3 className="font-bold text-2xl mb-2">{name}</h3>
-          <div className="flex items-start">
-            <div className="flex mb-2">*****</div>
+          <div className="flex items-center">
+            <Stars reviews={restaurant.reviews} />
             <p className="ml-2">
               {`${reviews.length} review${reviews.length === 1 ? "" : "s"}`}
             </p>
