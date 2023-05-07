@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import validator from "validator";
 import bcrypt from "bcrypt";
-import * as jose from "jose";
 
 import prisma from "@/lib/prisma";
+import { generateJWT } from "@/utils/generateJWT";
 
 export async function POST(req: NextRequest) {
   const { firstName, lastName, city, password, email, phone } =
@@ -70,12 +70,8 @@ export async function POST(req: NextRequest) {
       password: hashedPassword,
     },
   });
-  const alg = "HS256";
-  const secret = new TextEncoder().encode(process.env.JWT_SECRET);
-  const token = await new jose.SignJWT({ email: user.email })
-    .setProtectedHeader({ alg })
-    .setExpirationTime("24h")
-    .sign(secret);
+
+  const token = await generateJWT({ email: user.email });
 
   return NextResponse.json({
     token,
