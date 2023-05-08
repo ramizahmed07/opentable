@@ -2,7 +2,7 @@
 
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CircularProgress } from "@mui/material";
 
 import AuthModalInputs from "./AuthModalInputs";
@@ -41,6 +41,24 @@ export default function AuthModal({ isSignin }: { isSignin: boolean }) {
     city: "",
     password: "",
   });
+
+  const [disabled, setDisabled] = useState(true);
+
+  useEffect(() => {
+    if (isSignin) {
+      if (inputs.password && inputs.email) {
+        setDisabled(false);
+      } else {
+        setDisabled(true);
+      }
+    } else {
+      const keys: (keyof typeof inputs)[] = Object.keys(
+        inputs
+      ) as (keyof typeof inputs)[];
+      const isKeyEmpty = keys.some((key) => !inputs[key]);
+      setDisabled(isKeyEmpty);
+    }
+  }, [inputs]);
 
   return (
     <div>
@@ -90,7 +108,7 @@ export default function AuthModal({ isSignin }: { isSignin: boolean }) {
                 />
                 <button
                   className="uppercase bg-red-600 w-full text-white p-3 rounded text-sm mb-5 disabled:bg-gray-400"
-                  // disabled={disabled}
+                  disabled={disabled}
                   // onClick={handleClick}
                 >
                   {renderContent("Sign In", "Create Account")}
