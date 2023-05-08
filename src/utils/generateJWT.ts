@@ -1,11 +1,9 @@
-import * as jose from "jose";
+import jwt from "jsonwebtoken";
 
 export const generateJWT = async (payload: { email: string }) => {
-  const alg = "HS256";
-  const secret = new TextEncoder().encode(process.env.JWT_SECRET);
-  const token = await new jose.SignJWT(payload)
-    .setProtectedHeader({ alg })
-    .setExpirationTime("24h")
-    .sign(secret);
+  const token = jwt.sign(payload, process.env.JWT_SECRET!, {
+    algorithm: "HS256",
+    expiresIn: "24h",
+  });
   return token;
 };
